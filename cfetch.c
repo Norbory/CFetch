@@ -1,7 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include <GLFW/glfw3.h>
+#include <GL/gl.h>
+
 #include "cpuinfo_x86.h"
+
+// Constantes
+const int WIDTH = 256;
+const int HEIGHT = 256;
 
 void battery(void) {
   int percentage = 0;
