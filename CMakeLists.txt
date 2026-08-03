@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.14)
-project(cfetch C)
+project(gtk_app C)
 
 set(CMAKE_C_STANDARD 11)
 
-# Descargar e integrar cpu_features automáticamente desde GitHub
+# CPU Features
 include(FetchContent)
 FetchContent_Declare(
   CpuFeatures
@@ -12,8 +12,10 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(CpuFeatures)
 
-# Tu ejecutable
-add_executable(cfetch cfetch.c)
+# GTK 3.0
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(GTK REQUIRED IMPORTED_TARGET gtk+-3.0)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -g")
+add_executable(prueba prueba.c)
 
-# Enlazar la librería a tu ejecutable
-target_link_libraries(cfetch PRIVATE cpu_features)
+target_link_libraries(prueba PRIVATE cpu_features PkgConfig::GTK)
